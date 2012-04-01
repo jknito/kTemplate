@@ -11,6 +11,13 @@
     <!--[if lt IE 9]>
       <script src="<?php echo Yii::app()->request->baseUrl; ?>/bootstrap/js/html5.js"></script>
     <![endif]-->
+    <link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/javascripts/prettify/prettify.css"/>
+    <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/javascripts/prettify/prettify.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            prettyPrint();
+        });
+    </script>
 </head>
 
 <body>

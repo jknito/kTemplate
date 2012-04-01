@@ -13,10 +13,13 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Scripts #<?php echo $model->id; ?></h1>
+<h2>View Scripts #<?php echo $model->id; ?></h2>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
+	'htmlOptions'=>array(
+		'class' =>'table table-bordered table-striped table-condensed',
+		),
 	'attributes'=>array(
 		'id',
 		'id_user',
@@ -29,8 +32,8 @@ $this->menu=array(
 	),
 )); ?>
 
-<?php echo CHtml::link(CHtml::encode($model->nombre_archivo), array("upload/download", 'id'=>$model->id)); ?>
+<?php echo CHtml::link("<i class='icon-download icon-white'></i> ".CHtml::encode($model->nombre_archivo), array("upload/download", 'id'=>$model->id),array("class"=>"btn btn-primary")); ?>
 
-<pre class="brush: sql; toolbar: true;">
+<pre class="prettyprint linenums">
 <?php echo CHtml::encode($model->contenido_archivo); ?>
 </pre>

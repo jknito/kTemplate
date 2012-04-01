@@ -19,3 +19,21 @@ Permisos</a>
 </div>
 
 <?php } ?>
+
+<div class="row-fluid">
+<div class="span12">
+<div class="page-header"><h1>Opciones</h1></div>
+<a class="btn btn-large" href="<?=$this->createUrl('/servicios')?>">
+<img src="<?=$this->createUrl('/images/menu/24x24/configuration.png')?>" />
+Servicios</a>
+<a class="btn btn-large" href="<?=$this->createUrl('/scripts')?>">
+<img src="<?=$this->createUrl('/images/menu/24x24/file.png')?>" />
+Scripts</a>
+<a class="btn btn-large" href="<?=$this->createUrl('/ejecuciones')?>">
+<img src="<?=$this->createUrl('/images/menu/24x24/computer.png')?>" />
+Ejecuciones</a>
+<a class="btn btn-large" href="<?=$this->createUrl('/ejecutar')?>">
+<img src="<?=$this->createUrl('/images/menu/24x24/notepad.png')?>" />
+Matriz Ejecuciones</a>
+</div>
+</div>
