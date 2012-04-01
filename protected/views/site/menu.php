@@ -19,11 +19,3 @@ Permisos</a>
 </div>
 
 <?php } ?>
-
-<div class="row-fluid">
-<div class="span12">
-<div class="page-header"><h1>Mantenimientos</h1></div>
-<a class="btn btn-large" href="<?=$this->createUrl('/user/admin')?>"><i class="icon-user"></i><br/>Usuarios</a>
-<a class="btn btn-large" href="<?=$this->createUrl('/rights')?>"><i class="icon-book"></i><br/>Permisos</a>
-</div>
-</div>

@@ -10,7 +10,7 @@ return array(
 	'name'=>'ScriptLog',
 
 	// preloading 'log' component
-	'preload'=>array('log'),
+	'preload'=>array('log', 'kint'),
 
 	// autoloading model and component classes
 	'import'=>array(
@@ -40,6 +40,9 @@ return array(
 
 	// application components
 	'components'=>array(
+		'kint' => array(
+			'class' => 'ext.Kint.Kint',
+		),
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
