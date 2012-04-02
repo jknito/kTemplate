@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'ScriptLog',
+	'name'=>'kTemplate',
 
 	// preloading 'log' component
 	'preload'=>array('log', 'kint'),
@@ -88,10 +88,10 @@ return array(
 			),
 		),
 		'db'=>array(
-			'connectionString' => 'mysql:host=127.0.0.1;dbname=scriptlog',
+			'connectionString' => 'mysql:host=127.0.0.1;dbname=ktemplate',
 			'emulatePrepare' => true,
-			'username' => 'scriptlog',
-			'password' => 'scriptlog',
+			'username' => 'ktemplate',
+			'password' => 'ktemplate',
 			'charset' => 'utf8',
             'enableParamLogging' => true,
             'enableProfiling' => true,
