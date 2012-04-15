@@ -1,11 +1,5 @@
 <?php
 
-class GlobalConstants{
-	const UPLOAD_PATH = '/var/www/dbmanager/uploads';
-	const SCRIPT_PATH = '/var/www/dbmanager/scriptfiles';
-	const ZEROES_FILE = 5;
-}
-
 /**
  * This is the shortcut to DIRECTORY_SEPARATOR
  */
@@ -27,15 +21,6 @@ function cs()
     // You could also call the client script instance via Yii::app()->clientScript
     // But this is faster
     return Yii::app()->getClientScript();
-}
- 
-/**
- * This is the shortcut to Yii::app()->user.
- */
-function user() 
-{
-    //return Yii::app()->getUser();
-    return Yii::app()->getModule('user');
 }
  
 /**
@@ -95,7 +80,11 @@ function param($name)
  * para determinar si esta activo el menu
  */
 function activeMenu($url,$page){
+    //dd($page);
     $path = explode ('/',substr($url,1));
+    if(!isset($page->action)){
+        if( $path[0] == $page->id) return true; else return false;
+    }
     if(count($path) == 0) return false;
     if(count($path) == 1) if( $path[0] == $page->action->controller->id) return true; else return false;
     if(count($path) == 2) 

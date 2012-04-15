@@ -1,10 +1,14 @@
 <div class="row-fluid">
-<div class="span12">
+<div class="span12-fluid">
 <?php
 $this->breadcrumbs=array(
 	(UserModule::t('Users'))=>array('admin'),
 	$model->username=>array('view','id'=>$model->id),
 	(UserModule::t('Update')),
+);
+$this->menu=array(
+	array('url'=>url('/user/admin'), 'label'=>UserModule::t('Manage User'),'active'=>activeMenu('/admin',$this),),
+	array('url'=>url('/rights'), 'label'=>'Permisos','active'=>activeMenu('/rights',$this),),
 );
 ?>
 <?php echo $this->renderPartial('_menu', array(

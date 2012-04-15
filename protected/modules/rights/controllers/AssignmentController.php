@@ -24,6 +24,7 @@ class AssignmentController extends RController
 
 		// Register the scripts
 		$this->module->registerScripts();
+		
 	}
 
 	/**

@@ -1,7 +1,7 @@
 <div class="row-fluid">
-<div class="span12">
+<div class="span12-fluid">
 
-<?php echo CHtml::beginForm('','post',array('enctype'=>'multipart/form-data')); ?>
+<?php echo CHtml::beginForm('','post',array('enctype'=>'multipart/form-data','class'=>'well')); ?>
 
 	<p class="note"><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></p>
 
@@ -51,8 +51,8 @@
 			}
 		}
 ?>
-
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+<br/>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class'=>'btn btn-primary')); ?>
 
 <?php echo CHtml::endForm(); ?>
 </div>

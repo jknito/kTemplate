@@ -32,14 +32,11 @@
           <a class="brand" href="<?php echo Yii::app()->request->baseUrl; ?>"><?php echo Yii::app()->name?></a>
           <div class="nav-collapse">
             <?php 
+            require_once('menu_items.php');
             $user = Yii::app()->getModule('user')->user(Yii::app()->user->id);
             $this->widget('zii.widgets.CMenu',array(
                 'htmlOptions'=>array('class'=>'nav'),
-                'items'=>array(        
-                    array('label'=>'Menu', 'url'=>$this->createUrl('/site/menu'),'visible'=>!Yii::app()->user->isGuest,'active'=>$this->action->id=='menu'),
-                    array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-                    array('label'=>'Contact', 'url'=>array('/site/contact')),
-                ),
+                'items'=>$itemsForFile,
             )); 
             $this->widget('zii.widgets.CMenu',array(
                 'htmlOptions'=>array('class'=>'nav pull-right'),
@@ -55,10 +52,10 @@
       </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container">
         <?php echo $content; ?>
         <footer>
-        <hr/><?php echo Yii::powered(); ?>
+        <hr/>Powered by <a href="http://jknito.net" target="_blank">jknito</a>
         </footer><!-- footer -->
     </div><!-- page -->
 

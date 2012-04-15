@@ -5,6 +5,10 @@ $this->breadcrumbs=array(
 	UserModule::t('Users')=>array('admin'),
 	$model->username,
 );
+$this->menu=array(
+	array('url'=>url('/user/admin'), 'label'=>UserModule::t('Manage User'),'active'=>activeMenu('/admin',$this),),
+	array('url'=>url('/rights'), 'label'=>'Permisos','active'=>activeMenu('/rights',$this),),
+);
 ?>
 
 <?php echo $this->renderPartial('_menu', array(
