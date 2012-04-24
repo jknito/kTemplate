@@ -25,12 +25,6 @@ MySQL - 5.1.49-community : Database - ktemplate
 
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-<<<<<<< HEAD
-=======
-USE `ktemplate`;
->>>>>>> origin/master
-
-
 
 /*Table structure for table `authassignment` */
 
