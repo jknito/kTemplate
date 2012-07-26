@@ -39,9 +39,21 @@ class UserInfo
     {
         return Yii::app()->getModule('user')->user();
     }
-    function isAdmin() 
+    function isAdmin()
     {
         return Yii::app()->getModule('user')->isAdmin();
     }
+    function isGuest()
+    {
+        return Yii::app()->user->isGuest;
+    }
+    function haveRol($rol='Authenticated')
+    {
+        if(Yii::app()->user->isGuest)
+            return false;
+        if(Yii::app()->getModule('user')->isAdmin())
+            return true;
+        $roles = Rights::getAssignedRoles();
+        return isset($roles[$rol]);
+    }
 }
-?>

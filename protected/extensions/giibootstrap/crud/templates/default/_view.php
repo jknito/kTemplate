@@ -12,6 +12,8 @@ echo "\t<?php echo CHtml::link(CHtml::encode(\$data->{$this->tableSchema->primar
 $count=0;
 foreach($this->tableSchema->columns as $column)
 {
+	if($column->name == 'status')
+		continue;
 	if($column->isPrimaryKey)
 		continue;
 	if(++$count==7)

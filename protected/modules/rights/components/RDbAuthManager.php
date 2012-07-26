@@ -11,7 +11,10 @@ class RDbAuthManager extends CDbAuthManager
 	/**
 	 * @var string the name of the rights table.
 	 */
-	public $rightsTable = 'Rights';
+	public $rightsTable = 'rights';
+	public $assignmentTable = 'authassignment';
+	public $itemTable = 'authitem';
+	public $itemChildTable = 'authitemchild';
 
 	private $_items = array();
 	private $_itemChildren = array();

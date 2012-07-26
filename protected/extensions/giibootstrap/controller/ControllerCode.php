@@ -3,7 +3,7 @@
 class ControllerCode extends CCodeModel
 {
 	public $controller;
-	public $baseClass='Controller';
+	public $baseClass='RController';
 	public $actions='index';
 
 	public function rules()

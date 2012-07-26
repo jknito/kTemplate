@@ -170,8 +170,11 @@ class RGenerator extends CApplicationComponent
 					}
 
 					if( is_dir($entryPath)===true )
-						foreach( $this->getControllersInPath($entryPath) as $controllerName=>$controller )
-							$controllers[ $controllerName ] = $controller;
+						foreach( $this->getControllersInPath($entryPath) as $controllerName=>$controller ){
+							//echo $entry."/".$controller."<br/>";
+							$controller['name'] = strtolower($entry)."/".$controller['name'];
+							$controllers[ strtolower($entry)."/".$controllerName ] = $controller;
+						}
 				}
 			}
 		}

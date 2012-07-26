@@ -4,6 +4,10 @@
  * This is the shortcut to DIRECTORY_SEPARATOR
  */
 defined('DS') or define('DS',DIRECTORY_SEPARATOR);
+
+function db(){
+    return Yii::app()->db;
+}
  
 /**
  * This is the shortcut to Yii::app()
@@ -11,6 +15,11 @@ defined('DS') or define('DS',DIRECTORY_SEPARATOR);
 function app()
 {
     return Yii::app();
+}
+
+function request()
+{
+    return Yii::app()->request;
 }
  
 /**
@@ -66,15 +75,6 @@ function bu($url=null)
         $baseUrl=Yii::app()->getRequest()->getBaseUrl();
     return $url===null ? $baseUrl : $baseUrl.'/'.ltrim($url,'/');
 }
- 
-/**
- * Returns the named application parameter.
- * This is the shortcut to Yii::app()->params[$name].
- */
-function param($name) 
-{
-    return Yii::app()->params[$name];
-}
 
 /**
  * para determinar si esta activo el menu
@@ -91,6 +91,11 @@ function activeMenu($url,$page){
         if( $path[1] == $page->action->id && $path[0] == $page->action->controller->id )
             return true;
     return false;
+}
+
+function assets($imagen,$ruta='/images/'){
+	$url = Yii::app()->assetManager->publish(Yii::app()->basePath.$ruta.$imagen);
+	return $url;
 }
 
 ?>

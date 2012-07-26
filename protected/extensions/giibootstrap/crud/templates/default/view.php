@@ -14,23 +14,33 @@ echo "\$this->breadcrumbs=array(
 );\n";
 ?>
 
+$this->tituloPagina = "Ver <?php echo $label; ?>";
+
 $this->menu=array(
-	array('label'=>'List <?php echo $this->modelClass; ?>', 'url'=>array('index')),
-	array('label'=>'Create <?php echo $this->modelClass; ?>', 'url'=>array('create')),
-	array('label'=>'Update <?php echo $this->modelClass; ?>', 'url'=>array('update', 'id'=>$model-><?php echo $this->tableSchema->primaryKey; ?>)),
-	array('label'=>'Delete <?php echo $this->modelClass; ?>', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model-><?php echo $this->tableSchema->primaryKey; ?>),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage <?php echo $this->modelClass; ?>', 'url'=>array('admin')),
+	array('template'=>'<h2><?php echo $label; ?>&nbsp;</h2>',),
+	array('label'=>'Listar', 'url'=>array('index')),
+	array('label'=>'Crear', 'url'=>array('create')),
+	array('label'=>'Modificar', 'url'=>array('update', 'id'=>$model-><?php echo $this->tableSchema->primaryKey; ?>)),
+	array('label'=>'Administrar', 'url'=>array('admin')),
 );
 ?>
-
-<h1>View <?php echo $this->modelClass." #<?php echo \$model->{$this->tableSchema->primaryKey}; ?>"; ?></h1>
-
 <?php echo "<?php"; ?> $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
+	'htmlOptions'=>array(
+		'class' =>'table table-bordered table-striped table-condensed',
+		),
 	'attributes'=>array(
 <?php
-foreach($this->tableSchema->columns as $column)
+foreach($this->tableSchema->columns as $column){
+	if($column->name == 'status'){
+        echo "array(
+        	'label'=>'Status',
+        	'value'=>(\$model->status==1 ? \"Activo\":\"Inactivo\"),
+        ),";
+		continue;
+	}
 	echo "\t\t'".$column->name."',\n";
+}
 ?>
 	),
 )); ?>

@@ -4,7 +4,7 @@ class CrudCode extends CCodeModel
 {
 	public $model;
 	public $controller;
-	public $baseControllerClass='Controller';
+	public $baseControllerClass='RController';
 
 	private $_modelClass;
 	private $_table;
@@ -216,12 +216,12 @@ class CrudCode extends CCodeModel
 				$inputField='textField';
 
 			if($column->type!=='string' || $column->size===null)
-				return "\$form->{$inputField}(\$model,'{$column->name}')";
+				return "\$form->{$inputField}(\$model,'{$column->name}',array('ktype'=>'{$column->dbType}','rel'=>'tooltip'))";
 			else
 			{
 				if(($size=$maxLength=$column->size)>60)
 					$size=60;
-				return "\$form->{$inputField}(\$model,'{$column->name}',array('size'=>$size,'maxlength'=>$maxLength))";
+				return "\$form->{$inputField}(\$model,'{$column->name}',array('size'=>$size,'maxlength'=>$maxLength,'ktype'=>'{$column->dbType}'))";
 			}
 		}
 	}

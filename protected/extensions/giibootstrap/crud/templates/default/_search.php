@@ -13,6 +13,8 @@
 
 <?php foreach($this->tableSchema->columns as $column): ?>
 <?php
+	if($column->name == 'status')
+		continue;
 	$field=$this->generateInputField($this->modelClass,$column);
 	if(strpos($field,'password')!==false)
 		continue;
@@ -23,7 +25,7 @@
 	</div>
 
 <?php endforeach; ?>
-	<div class="row buttons">
+	<div>
 		<?php echo "<?php echo CHtml::submitButton('Search'); ?>\n"; ?>
 	</div>
 

@@ -9,6 +9,16 @@
 
 class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseClass."\n"; ?>
 {
+	/**
+	 * Permisos a la acciones
+	 */
+	public function filters()
+	{
+		return array(
+			'rights',
+		);
+	}
+
 <?php foreach($this->getActionIDs() as $action): ?>
 	public function action<?php echo ucfirst($action); ?>()
 	{

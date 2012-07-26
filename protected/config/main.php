@@ -20,6 +20,7 @@ return array(
         'application.modules.user.components.*',
         'application.modules.rights.*',
         'application.modules.rights.components.*',
+		'application.helpers.*'
 	),
 
 	'modules'=>array(
@@ -28,7 +29,9 @@ return array(
 			'password'=>'changeme',
 			'ipFilters'=>array('127.0.0.1','::1'),
             'generatorPaths'=>array(
-                //'bootstrap.gii',
+				//'system.gii.generators',
+				//'application.gii',
+                'ext.giibootstrap',
             ),
 		),
         'user',

@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="jknito">
+	<meta name="author" content="keliasjes@gmail.com">
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
     <?php Yii::app()->clientScript->registerCoreScript('bootstrap'); ?>
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -13,11 +14,38 @@
     <![endif]-->
     <link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/javascripts/prettify/prettify.css"/>
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/javascripts/prettify/prettify.js"></script>
+    <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/javascripts/sugar-1.2.4.min.js"></script>    
     <script type="text/javascript">
         $(document).ready(function() {
             prettyPrint();
+            Date.setLocale('es');
+            $('a[ktype="cellinfo"]').popover({
+                content: function(){
+                    return $(this).find("#content").html();
+                }
+            });
+            $('input[ktype="datetime"]').tooltip({
+                trigger: "focus",
+                placement: "right",
+                title: function(){
+                    return Date.create($(this).val()).format('{yyyy}-{MM}-{dd}');
+                }
+            });
+            $('input[ktype="datetime"]').keyup(function(){
+                $(this).tooltip('show');
+            });
+            $('input[ktype="datetime"]').blur(function(){
+                var texto = Date.create($(this).val()).format('{yyyy}-{MM}-{dd}');
+                if( ! texto.has("Invalid") && ! $(this).val().isBlank() )
+                    $(this).val(texto);
+                else
+                    $(this).val("");
+            });
         });
     </script>
+    <style type="text/css" media="print">
+        .pagination ul { background-color: #fff; }
+    </style>
 </head>
 
 <body>
