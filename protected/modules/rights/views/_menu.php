@@ -23,6 +23,9 @@
 			'itemOptions'=>array('class'=>'item-roles'),
 			'active'=>$this->action->id=='roles',
 		),
+		// quito estos porque son conceptos que aun no entiendo
+		// y explicar al usuario algo que ni yo mismo entiendo no es correcto
+		/*
 		array(
 			'label'=>Rights::t('core', 'Tasks'),
 			'url'=>array('authItem/tasks'),
@@ -35,10 +38,11 @@
 			'itemOptions'=>array('class'=>'item-operations'),
 			'active'=>$this->action->id=='operations',
 		),
+		*/
 	)
 ));	
 
 ?>
-<pre>
+<!--pre>
 <?php print_r($this->action->controller->id); ?>
-</pre>
+</pre-->

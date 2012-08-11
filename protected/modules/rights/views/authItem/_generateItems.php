@@ -9,7 +9,7 @@
 
 			<tr class="controller-row <?php echo $controllerExists===true ? 'exists' : ''; ?>">
 				<td class="checkbox-column"><?php echo $controllerExists===false ? $form->checkBox($model, 'items['.$controllerKey.'.*]') : ''; ?></td>
-				<td class="name-column"><?php echo ucfirst($item['name']).'.*'; ?></td>
+				<td class="name-column" colspan="2"><?php echo ucfirst($item['name']).'.*'; ?></td>
 				<td class="path-column"><?php echo substr($item['path'], $basePathLength+1); ?> | <a href="/" onclick="javascript:fnShowActions('<?=md5($item['path'])?>');return false;">Show Actions</a></td>
 			</tr>
 
@@ -21,6 +21,7 @@
 				<tr class="action-row<?php echo $actionExists===true ? ' exists' : ''; ?><?php echo ($i++ % 2)===0 ? ' odd' : ' even'; ?>"
                     path="<?=md5($item['path'])?>" style="display:none;"
                 >
+                	<td></td>
 					<td class="checkbox-column"><?php echo $actionExists===false ? $form->checkBox($model, 'items['.$actionKey.']') : ''; ?></td>
 					<td class="name-column"><?php echo $action['name']; ?></td>
 					<td class="path-column"><?php echo substr($item['path'], $basePathLength+1).(isset($action['line'])===true?':'.$action['line']:''); ?></td>
@@ -38,17 +39,20 @@
 
 <?php endif; ?>
 
-<?php if( $items['modules']!==array() ): ?>
+
+<?php 
+//  puse el false para que no me presente los modulos
+if( $items['modules']!==array() && false ): ?>
 
 	<?php if( $displayModuleHeadingRow===true ): ?>
 
-		<tr><th class="module-heading-row" colspan="3"><?php echo Rights::t('core', 'Modules'); ?></th></tr>
+		<tr><th class="module-heading-row" colspan="4"><?php echo Rights::t('core', 'Modules'); ?></th></tr>
 
 	<?php endif; ?>
 
 	<?php foreach( $items['modules'] as $moduleName=>$moduleItems ): ?>
 
-		<tr><th class="module-row" colspan="3"><?php echo ucfirst($moduleName).'Module'; ?></th></tr>
+		<tr><th class="module-row" colspan="4"><?php echo ucfirst($moduleName).'Module'; ?></th></tr>
 
 		<?php $this->renderPartial('_generateItems', array(
 			'model'=>$model,

@@ -6,8 +6,9 @@ $this->breadcrumbs=array(
 	$model->username,
 );
 $this->menu=array(
-	array('url'=>url('/user/admin'), 'label'=>UserModule::t('Manage User'),'active'=>activeMenu('/admin',$this),),
-	array('url'=>url('/rights'), 'label'=>'Permisos','active'=>activeMenu('/rights',$this),),
+	array('url'=>url('/user/admin'), 'label'=>'Usuarios','active'=>true,),
+	array('url'=>url('/rights'), 'label'=>'Permisos','active'=>false,),
+	array('url'=>url('/menu'), 'label'=>'Menu','active'=>false,),
 );
 ?>
 

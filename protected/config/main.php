@@ -20,7 +20,8 @@ return array(
         'application.modules.user.components.*',
         'application.modules.rights.*',
         'application.modules.rights.components.*',
-		'application.helpers.*'
+		'application.modules.menu.models.*',
+        'application.helpers.*'
 	),
 
 	'modules'=>array(
@@ -35,6 +36,7 @@ return array(
             ),
 		),
         'user',
+        'menu',
         'rights'=>array(
             //'install'=>true,
             'enableBizRule'=>false,

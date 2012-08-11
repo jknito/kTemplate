@@ -20,11 +20,11 @@ require_once($parameters);
 $app = Yii::createWebApplication($config);
 
 // adding Zend Framework autoloader
-Yii::import('application.vendors.*');
-require "Zend/Loader/Autoloader.php";
-Yii::registerAutoloader(array('Zend_Loader_Autoloader','autoload'), true);
-require_once "PHPExcel/PHPExcel.php";
-require_once "PHPExcel/PHPExcel/Autoloader.php";
-Yii::registerAutoloader(array('PHPExcel_Autoloader','Load'), true);
+//Yii::import('application.vendors.*');
+//require "Zend/Loader/Autoloader.php";
+//Yii::registerAutoloader(array('Zend_Loader_Autoloader','autoload'), true);
+//require_once "PHPExcel/PHPExcel.php";
+//require_once "PHPExcel/PHPExcel/Autoloader.php";
+//Yii::registerAutoloader(array('PHPExcel_Autoloader','Load'), true);
 
 $app->run();

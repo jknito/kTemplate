@@ -1,19 +1,19 @@
 <?php 
 $user = UserInfo::singleton();
-$this->pageTitle=Yii::app()->name." | Menu"; ?>
+$menu = Menu::model()->findByPk(request()->getParam("id"));
+$this->pageTitle=Yii::app()->name." | Menu $menu->nombre"; 
 
-<?php if ($user->haveRol('Admin')):?>
-    <a href="<?php echo url('/conf/parametro')?>">Parametros</a><br/>
-<?php endif ?>
-<?php if ($user->haveRol('Admin')):?>
-    <a href="<?php echo url('/tipos/tiposAdquisicion')?>">Tipos de Adquisicion</a><br/>
-<?php endif ?>
-<?php if ($user->haveRol('Admin')):?>
-    <a href="<?php echo url('/mail/admin')?>">Mails</a><br/>
-<?php endif ?>
-<?php if ($user->haveRol()):?>
-    <a href="<?php echo url('/obras')?>">Obras</a><br/>
-<?php endif ?>
-<?php if ($user->haveRol()):?>
-    <a href="<?php echo url('/materialesEtapas')?>">Materiales y Etapas</a><br/>
-<?php endif ?>
+$data = Yii::app()->getModule('menu')->getMenues($user,request()->getParam("id"));
+//dd($data);
+foreach ($data as $value) {
+	if($value["tipo"] == "O"){
+		$target = "_blank";
+		if($value["apertura"] == "S")
+			$target = "_self";
+		echo CHtml::link($value["nombre"], $value["ruta"], array('target'=>$target));
+		echo "<br/>";
+	}else{
+		echo "<h3>".$value["nombre"]."</h3>";
+	}
+}
+?>

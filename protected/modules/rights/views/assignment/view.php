@@ -32,7 +32,8 @@
     			'htmlOptions'=>array('class'=>'role-column'),
     			'value'=>'$data->getAssignmentsText(CAuthItem::TYPE_ROLE)',
     		),
-			array(
+			/*
+            array(
     			'name'=>'assignments',
     			'header'=>Rights::t('core', 'Tasks'),
     			'type'=>'raw',
@@ -46,6 +47,7 @@
     			'htmlOptions'=>array('class'=>'operation-column'),
     			'value'=>'$data->getAssignmentsText(CAuthItem::TYPE_OPERATION)',
     		),
+            */
 	    )
 	)); ?>
 

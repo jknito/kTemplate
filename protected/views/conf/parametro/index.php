@@ -1,28 +1,47 @@
 <?php
 $this->breadcrumbs=array(
-	'Parametros',
+	'Parametros'=>array('index'),
+	'Manage',
 );
 
 $this->menu=array(
 	array('template'=>'<h2>Parametros&nbsp;</h2>',),
 	array('label'=>'Crear', 'url'=>array('create')),
-	array('label'=>'Administrar', 'url'=>array('admin')),
 );
-?>
 
-<?php // $this->widget('zii.widgets.CListView', array(
-	//'dataProvider'=>$dataProvider,
-	//'itemView'=>'_view',
-//)); ?>
+Yii::app()->clientScript->registerScript('search', "
+$('.search-button').click(function(){
+	$('.search-form').toggle();
+	return false;
+});
+$('.search-form form').submit(function(){
+	$.fn.yiiGridView.update('parametro-grid', {
+		data: $(this).serialize()
+	});
+	return false;
+});
+");
+?>
+<style type="text/css">
+.filters td input { width: 90%; margin-bottom:0px;}
+.filters td select { width: auto; margin-bottom:0px;}
+</style>
+<?php // echo CHtml::link('Busqueda avanzada','#',array('class'=>'search-button')); ?>
+<div class="search-form" style="display:none">
+<?php $this->renderPartial('_search',array(
+	'model'=>$model,
+)); ?>
+</div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'parametro-grid',
-	'dataProvider'=>$dataProvider,
+	'dataProvider'=>$model->search(),
 	'itemsCssClass'=>'table table-bordered table-striped table-condensed',
 	'pagerCssClass'=>'pagination pagination-centered',
 	'pager'=>array(
 		'header'=>false,
 	),
+	'filter'=>$model,
 	'columns'=>array(
 		'id',
 		'escenario',
@@ -32,20 +51,27 @@ $this->menu=array(
 		//'referencia_2',
 		/*
 		'referencia_3',
-		'comentario',*/
-array( 'class'=>'CDataColumn',
-        	'name'=>'status',
+		'comentario',
+		*/
+        array( 'class'=>'CDataColumn',
+        	'id'=>'status',
         	'header'=>'Status',
         	'value'=>'$data->status==1 ? "Activo":"Inactivo"',
+        	'filter'=>CHtml::activeDropDownList($model,"status",array(""=>"","1"=>"Activo","2"=>"Inactivo")),
         ),
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{view}',
+			'template'=>'{view} {update}',
 			'buttons'=>array(
 				'view' => array(
 				    'label'=>'<i class="icon-search"></i>',
 				    'imageUrl'=>false,  // image URL of the button. If not set or false, a text link is used
 				    'options'=>array('title'=>'Ver'), // HTML options for the button tag
+				),
+				'update' => array(
+				    'label'=>'<i class="icon-edit"></i>',
+				    'imageUrl'=>false,  // image URL of the button. If not set or false, a text link is used
+				    'options'=>array('title'=>'Editar'), // HTML options for the button tag
 				)
 			),
 		),

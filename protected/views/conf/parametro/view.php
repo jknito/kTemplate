@@ -11,7 +11,6 @@ $this->menu=array(
 	array('label'=>'Listar', 'url'=>array('index')),
 	array('label'=>'Crear', 'url'=>array('create')),
 	array('label'=>'Modificar', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Administrar', 'url'=>array('admin')),
 );
 ?>
 <?php $this->widget('zii.widgets.CDetailView', array(

@@ -1,8 +1,9 @@
 <?php $this->beginContent(Rights::module()->appLayout); 
 
 $this->menu=array(
-	array('url'=>url('/user/admin'), 'label'=>UserModule::t('Manage User'),'active'=>activeMenu('/admin',$this),),
-	array('url'=>url('/rights'), 'label'=>'Permisos','active'=>activeMenu('/rights',$this),),
+	array('url'=>url('/user/admin'), 'label'=>'Usuarios','active'=>false,),
+	array('url'=>url('/rights'), 'label'=>'Permisos','active'=>true,),
+	array('url'=>url('/menu'), 'label'=>'Menu','active'=>false,),
 );
 
 ?>
@@ -19,7 +20,7 @@ $this->menu=array(
 		</div>
 	</div>
 
-	<div class="span9-fluid">
+	<div class="span9">
 
 		<?php if( $this->id!=='install' ): ?>
 

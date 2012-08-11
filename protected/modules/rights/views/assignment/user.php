@@ -10,14 +10,15 @@
 		':username'=>$model->getName()
 	)); ?></h2>
 	
-	<div class="assignments span-12 first">
+	<div class="assignments span-6 first">
 
 		<?php $this->widget('zii.widgets.grid.CGridView', array(
 			'dataProvider'=>$dataProvider,
 			'template'=>'{items}',
-			'hideHeader'=>true,
+			//'hideHeader'=>true,
 			'emptyText'=>Rights::t('core', 'This user has not been assigned any items.'),
-			'htmlOptions'=>array('class'=>'grid-view user-assignment-table mini'),
+			//'htmlOptions'=>array('class'=>'table table-bordered table-striped table-condensed'),
+			'itemsCssClass'=>'table table-bordered table-striped table-condensed',
 			'columns'=>array(
     			array(
     				'name'=>'name',
@@ -44,7 +45,7 @@
 
 	</div>
 
-	<div class="add-assignment span-11 last">
+	<div class="add-assignment span-6 last">
 
 		<h3><?php echo Rights::t('core', 'Assign item'); ?></h3>
 

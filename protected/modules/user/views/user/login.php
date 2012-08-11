@@ -26,8 +26,9 @@ $this->breadcrumbs=array(
         </label>
 
         <?php echo CHtml::submitButton('Login',array("class"=>'btn btn-primary')); ?>
-    <?php echo CHtml::link('Lost Password?', Yii::app()->getModule('user')->recoveryUrl); ?> | 
-    <?php echo CHtml::link('Register', Yii::app()->getModule('user')->registrationUrl); ?>
+
+    <?php // echo CHtml::link('Lost Password?', Yii::app()->getModule('user')->recoveryUrl); ?>
+    <?php // echo CHtml::link('Register', Yii::app()->getModule('user')->registrationUrl); ?>
 <?php echo CHtml::endForm(); ?>
 </div>
 </div>

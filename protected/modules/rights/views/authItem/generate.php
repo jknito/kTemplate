@@ -25,7 +25,7 @@ function fnShowActions(path){
 					<tbody>
 
 						<tr class="application-heading-row">
-							<th colspan="3"><?php echo Rights::t('core', 'Application'); ?></th>
+							<th colspan="4"><?php echo Rights::t('core', 'Application'); ?></th>
 						</tr>
 
 						<?php $this->renderPartial('_generateItems', array(

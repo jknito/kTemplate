@@ -1,12 +1,12 @@
 <?php
 $this->breadcrumbs=array(
-	'Parametros'=>array('index'),
+	'Menus'=>array('index'),
 	'Manage',
 );
 
-$this->menu=array(
-	array('template'=>'<h2>Parametros&nbsp;</h2>',),
-	array('label'=>'Listar', 'url'=>array('index')),
+$menu=array(
+	array('template'=>'<h2>Menus&nbsp;</h2>',),
+	array('label'=>'Listar', 'url'=>array('index'),'active'=>true),
 	array('label'=>'Crear', 'url'=>array('create')),
 );
 
@@ -16,7 +16,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('parametro-grid', {
+	$.fn.yiiGridView.update('menu-grid', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -33,9 +33,28 @@ $('.search-form form').submit(function(){
 	'model'=>$model,
 )); ?>
 </div><!-- search-form -->
+<div class="row"><div class="span9">
+<?php $this->widget('zii.widgets.CMenu', array(
+'items'=>$menu,
+'htmlOptions'=>array('class'=>'nav nav-tabs'),
+));
+?></div></div>
+<div class="row">
+<div class="span2">
+<?php
+$this->widget('system.web.widgets.CTreeView',array(
+	'url' => url('menu/menu/ajaxFillTree'),
+	//'persist'=>'location',
+	//'data'=>$dataArray,
+	)
+);
+?>
+</div>
+<div class="span7">
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'parametro-grid',
+<?php 
+$this->widget('zii.widgets.grid.CGridView', array(
+	'id'=>'menu-grid',
 	'dataProvider'=>$model->search(),
 	'itemsCssClass'=>'table table-bordered table-striped table-condensed',
 	'pagerCssClass'=>'pagination pagination-centered',
@@ -44,16 +63,24 @@ $('.search-form form').submit(function(){
 	),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
-		'escenario',
-		'parametro',
-		'valor',
-		'referencia_1',
-		//'referencia_2',
-		/*
-		'referencia_3',
-		'comentario',
-		*/
+		array( 'id'=>'menu_id',
+        	'header'=>'Menu',
+        	'value'=>'empty($data->menu_id)? "" : Menu::model()->findByPk($data->menu_id)->nombre',
+        	'filter'=>false,
+        ),
+		'nombre',
+        array( 'class'=>'CDataColumn',
+        	'id'=>'tipo',
+        	'header'=>'Tipo',
+        	'value'=>'$data->tipo=="C" ? "Categoria":($data->tipo=="G" ? "Grupo":"Opcion")',
+        	'filter'=>CHtml::activeDropDownList($model,"tipo",array(""=>"","C"=>"Categoria","G"=>"Grupo","O"=>"Opcion")),
+        ),
+		'ruta',
+		array( 'id'=>'apertura',
+        	'header'=>'Apertura',
+        	'value'=>'$data->apertura',
+        	'filter'=>false,
+        ),
         array( 'class'=>'CDataColumn',
         	'id'=>'status',
         	'header'=>'Status',
@@ -78,4 +105,7 @@ $('.search-form form').submit(function(){
 		),
 	),
 	'pager'=>array('class'=>'KLinkPager'),
-)); ?>
+));
+ ?>
+</div>
+</div>
