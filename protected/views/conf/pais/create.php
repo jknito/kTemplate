@@ -1,12 +1,12 @@
 <?php
 $this->breadcrumbs=array(
-	'Mails'=>array('index'),
+	'Paises'=>array('index'),
 	'Create',
 );
 
 $this->menu=array(
-	array('template'=>'<h2>Mails&nbsp;</h2>',),
-	array('label'=>'Administrar', 'url'=>array('index')),
+	array('template'=>'<h2>Paises&nbsp;</h2>',),
+	array('label'=>'Listar', 'url'=>array('index')),
 );
 ?>
 

@@ -1,6 +1,6 @@
 <?php
 
-class MailController extends RController
+class ProvinciaController extends RController
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -77,22 +77,17 @@ class MailController extends RController
 	 */
 	public function actionCreate()
 	{
-		$model=new Mail;
+		$model=new Provincia;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Mail']))
+		if(isset($_POST['Provincia']))
 		{
-			$model->attributes=$_POST['Mail'];
+			$model->attributes=$_POST['Provincia'];
 			$model->status = 1;
-			$model->registro= date(p('saveDateTime'));
-			if($model->save()){
-				$this->sendMail($model);
-				$model->envio= date(p('saveDateTime'));
-				$model->save();
+			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
-			}
 		}
 
 		$this->render('create',array(
@@ -112,9 +107,9 @@ class MailController extends RController
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Mail']))
+		if(isset($_POST['Provincia']))
 		{
-			$model->attributes=$_POST['Mail'];
+			$model->attributes=$_POST['Provincia'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -149,14 +144,14 @@ class MailController extends RController
 	}
 
 	/**
-	 * Lists all models.
+	 * Manages all models.
 	 */
 	public function actionIndex()
 	{
-		$model=new Mail('search');
+		$model=new Provincia('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Mail']))
-			$model->attributes=$_GET['Mail'];
+		if(isset($_GET['Provincia']))
+			$model->attributes=$_GET['Provincia'];
 
 		$this->render('index',array(
 			'model'=>$model,
@@ -170,7 +165,7 @@ class MailController extends RController
 	 */
 	public function loadModel($id)
 	{
-		$model=Mail::model()->findByPk($id);
+		$model=Provincia::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -182,24 +177,10 @@ class MailController extends RController
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='mail-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='provincia-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
 	}
-	
-	public function actionSend($id){
-		$model = $this->loadModel($id);
-		$this->sendMail($model);
-		$model->envio= date(p('saveDateTime'));
-		$model->save();
-		echo "ok";
-	}
-
-	protected function sendMail($mensaje)
-	{    
-		MailHelper::sendMail($mensaje);
-	}
-
 }

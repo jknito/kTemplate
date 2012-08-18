@@ -10,7 +10,7 @@ foreach ($data as $value) {
 		$target = "_blank";
 		if($value["apertura"] == "S")
 			$target = "_self";
-		echo CHtml::link($value["nombre"], $value["ruta"], array('target'=>$target));
+		echo CHtml::link($value["nombre"], url($value["ruta"]), array('target'=>$target));
 		echo "<br/>";
 	}else{
 		echo "<h3>".$value["nombre"]."</h3>";

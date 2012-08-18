@@ -10,7 +10,7 @@ return array(
 	'name'=>'kTemplate',
 
 	// preloading 'log' component
-	'preload'=>array('log', 'kint'),
+	'preload'=>array('log'),
 
 	// autoloading model and component classes
 	'import'=>array(
@@ -25,16 +25,6 @@ return array(
 	),
 
 	'modules'=>array(
-		'gii'=>array(
-			'class'=>'system.gii.GiiModule',
-			'password'=>'changeme',
-			'ipFilters'=>array('127.0.0.1','::1'),
-            'generatorPaths'=>array(
-				//'system.gii.generators',
-				//'application.gii',
-                'ext.giibootstrap',
-            ),
-		),
         'user',
         'menu',
         'rights'=>array(
@@ -45,9 +35,6 @@ return array(
 
 	// application components
 	'components'=>array(
-		'kint' => array(
-			'class' => 'ext.Kint.Kint',
-		),
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
@@ -110,10 +97,6 @@ return array(
 				array(
 					'class'=>'CFileLogRoute',
 					'levels'=>'error, warning',
-				),
-				array(
-                    'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
-                    'ipFilters'=>array('127.0.0.1'),
 				),
 			),
 		),

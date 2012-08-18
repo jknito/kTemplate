@@ -1,17 +1,17 @@
 <?php
 $this->breadcrumbs=array(
-	'Mails'=>array('index'),
+	'Paises'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
 	'Update',
 );
 
-$this->tituloPagina = " Modificar Mails";
+$this->tituloPagina = " Modificar Paises";
 
 $this->menu=array(
-	array('template'=>'<h2>Mails&nbsp;</h2>',),
+	array('template'=>'<h2>Paises&nbsp;</h2>',),
+	array('label'=>'Listar', 'url'=>array('index')),
 	array('label'=>'Crear', 'url'=>array('create')),
 	array('label'=>'Ver', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Administrar', 'url'=>array('index')),
 );
 ?>
 
