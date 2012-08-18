@@ -1,24 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "provincia".
+ * This is the model class for table "canton".
  *
- * The followings are the available columns in table 'provincia':
+ * The followings are the available columns in table 'canton':
  * @property integer $id
- * @property integer $pais_id
+ * @property integer $provincia_id
  * @property string $nombre
  * @property integer $status
  *
  * The followings are the available model relations:
- * @property Canton[] $cantons
- * @property Pais $pais
+ * @property Provincia $provincia
  */
-class Provincia extends CActiveRecord
+class Canton extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Provincia the static model class
+	 * @return Canton the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -30,7 +29,7 @@ class Provincia extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'provincia';
+		return 'canton';
 	}
 
 	/**
@@ -41,25 +40,44 @@ class Provincia extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('pais_id, nombre, status', 'required'),
-			array('pais_id, status', 'numerical', 'integerOnly'=>true),
+			array('provincia_id, nombre, status', 'required'),
+			array('provincia_id, status', 'numerical', 'integerOnly'=>true),
 			array('nombre', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, pais_id, nombre, status, paisNombre', 'safe', 'on'=>'search'),
+			array('id, provincia_id, nombre, status, paisNombre, provinciaNombre', 'safe', 'on'=>'search'),
 		);
 	}
-
 	//nueva propiedad para pais
+	private $_paisId = null;
+	public function getPais_Id(){
+		if($this->_paisId === null && $this->provincia !== null && $this->provincia->pais !== null){
+			$this->_paisId = $this->provincia->pais->id;
+		}
+		return $this->_paisId;
+	}
+	public function setPais_Id($value){
+		$this->_paisId = $value;
+	}
 	private $_paisNombre = null;
 	public function getPaisNombre(){
-		if($this->_paisNombre === null && $this->pais !== null){
-			$this->_paisNombre = $this->pais->nombre;
+		if($this->_paisNombre === null && $this->provincia !== null && $this->provincia->pais !== null){
+			$this->_paisNombre = $this->provincia->pais->nombre;
 		}
 		return $this->_paisNombre;
 	}
 	public function setPaisNombre($value){
 		$this->_paisNombre = $value;
+	}
+	private $_provinciaNombre = null;
+	public function getProvinciaNombre(){
+		if($this->_provinciaNombre === null && $this->provincia !== null){
+			$this->_provinciaNombre = $this->provincia->nombre;
+		}
+		return $this->_provinciaNombre;
+	}
+	public function setProvinciaNombre($value){
+		$this->_provinciaNombre = $value;
 	}
 
 	/**
@@ -70,8 +88,7 @@ class Provincia extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'cantons' => array(self::HAS_MANY, 'Canton', 'provincia_id'),
-			'pais' => array(self::BELONGS_TO, 'Pais', 'pais_id'),
+			'provincia' => array(self::BELONGS_TO, 'Provincia', 'provincia_id'),
 		);
 	}
 
@@ -82,10 +99,11 @@ class Provincia extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'pais_id' => 'Pais',
+			'provincia_id' => 'Provincia',
 			'nombre' => 'Nombre',
 			'status' => 'Status',
 			'paisNombre' => 'Pais',
+			'provinciaNombre' => 'Provincia',
 		);
 	}
 
@@ -99,25 +117,18 @@ class Provincia extends CActiveRecord
 		// should not be searched.
 
 		$criteria=new CDbCriteria;
-		$criteria->with = "pais";
+		$criteria->with = array("provincia","provincia.pais");
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('pais_id',$this->pais_id);
-		$criteria->compare('nombre',$this->nombre,true);
-		$criteria->compare('t.status',$this->status);
+
+		$criteria->compare('t.id',$this->id);
+		$criteria->compare('t.provincia_id',$this->provincia_id);
+		$criteria->compare('t.nombre',$this->nombre,true);
 		$criteria->compare('pais.nombre',$this->paisNombre,true);
+		$criteria->compare('provincia.nombre',$this->provinciaNombre,true);
+		$criteria->compare('t.status',$this->status);
 
-		$sort = new CSort();
-		$sort->attributes = array(
-		    'paisNombre'=>array(
-		        'asc'=>'pais.nombre',
-		        'desc'=>'pais.nombre desc',
-		    ),
-		);
-
-		$provider = new CActiveDataProvider($this, array(
+		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
-		return $provider;
 	}
 }

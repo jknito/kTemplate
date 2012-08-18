@@ -1,13 +1,13 @@
 <?php
 $this->breadcrumbs=array(
-	'Provincias'=>array('index'),
+	'Cantons'=>array('index'),
 	$model->id,
 );
 
-$this->tituloPagina = "Ver Provincias";
+$this->tituloPagina = "Ver Cantons";
 
 $this->menu=array(
-	array('template'=>'<h2>Provincias&nbsp;</h2>',),
+	array('template'=>'<h2>Cantons&nbsp;</h2>',),
 	array('label'=>'Listar', 'url'=>array('index')),
 	array('label'=>'Crear', 'url'=>array('create')),
 	array('label'=>'Modificar', 'url'=>array('update', 'id'=>$model->id)),
@@ -20,8 +20,7 @@ $this->menu=array(
 		),
 	'attributes'=>array(
 		'id',
-		'pais_id',
-		'paisNombre',
+		'provincia_id',
 		'nombre',
 array(
         	'label'=>'Status',

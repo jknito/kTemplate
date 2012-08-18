@@ -12,18 +12,29 @@ class GeneralController extends RController
 	 * Para consultas de los paises
 	 */
 	public function actionPaises(){
-		$paises = Pais::model()->findAll('status = 1');
-		/*
-		$values = db()->createCommand()
-			->selectDistinct('rubro id, rubro label, rubro value')
-			->from(MaterialesRubros::model()->tableName())
-			->where('status = 1 and obra_id = :obra_id and rubro like :term and LENGTH(IFNULL(rubro,\'\')) > 0 ', 
-				array(':obra_id'=>$obra->id,':term'=>'%'.request()->getParam('term').'%'))
-			->queryAll();
-		*/
-		$this->layout = null;
+		
+		$cmd = cmd();
+		$cmd->select('id, nombre as value, nombre as label');
+		$cmd->from('pais');
+		$cmd->where('status = 1 and upper(nombre) like :pais', array(':pais'=>strtoupper('%'.request()->getParam('term').'%')));
+
+		$paises = $cmd->queryAll();
+
 		header('Content-type: application/json');
 		echo CJavaScript::jsonEncode($paises);
-		Yii::app()->end(); 
+		app()->end(); 
+	}	
+	public function actionProvincias(){
+		
+		$cmd = cmd();
+		$cmd->select('id, nombre as value, nombre as label');
+		$cmd->from('provincia');
+		$cmd->where('status = 1 and pais_id = :pais and upper(nombre) like :provincia', array(':pais'=>request()->getParam('pais'),':provincia'=>strtoupper('%'.request()->getParam('term').'%')));
+
+		$paises = $cmd->queryAll();
+
+		header('Content-type: application/json');
+		echo CJavaScript::jsonEncode($paises);
+		app()->end(); 
 	}	
 }
