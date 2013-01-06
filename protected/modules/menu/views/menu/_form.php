@@ -50,8 +50,32 @@
 
 	<div>
 		<?php echo $form->labelEx($model,'menu_id'); ?>
-		<?php 		
+		<?php
 		$data=array();
+		if($model->tipo == "G"){
+    		$data = Menu::model()->findAll('status = 1 and tipo = "C"');
+    		$data=CHtml::listData($data,'id','nombre');
+		    //foreach($data as $value=>$name)
+		    //{
+		    //    echo CHtml::tag('option',
+		    //               array('value'=>$value),CHtml::encode($name),true);
+		    //}
+		    //echo CHtml::dropDownList("Menu_menu_id","",$data);
+    	}
+		if($model->tipo == "O"){
+    		$cmd = db()->createCommand(
+    		"
+SELECT m1.nombre categoria, m2.id, m2.nombre, m2.tipo
+FROM menu m1, menu m2
+WHERE m2.menu_id = m1.id
+AND m2.tipo = 'G'
+"
+    		);
+    		$data=$cmd->queryAll();
+		    $data=CHtml::listData($data,'id','nombre','categoria');
+
+		    //echo CHtml::dropDownList("Menu_menu_id","",$data);
+    	}
 		//$data = Menu::model()->findAll('status = 1 and tipo in ("C","G")');
 		//array_unshift($data, new Menu);
 		//$data = CHtml::listData($data,'id','nombre');

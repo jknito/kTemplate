@@ -5,8 +5,8 @@ defined('DS') or define('DS',DIRECTORY_SEPARATOR);
 function db(){
     return Yii::app()->db;
 }
-function cmd(){
-    return Yii::app()->db->createCommand();
+function cmd($query=null){
+    return Yii::app()->db->createCommand($query);
 }
 function app(){
     return Yii::app();

@@ -20,8 +20,10 @@ $this->menu=array(
 		),
 	'attributes'=>array(
 		'id',
-		'provincia_id',
+		'paisNombre',
+		'provinciaNombre',
 		'nombre',
+		'codigo',
 array(
         	'label'=>'Status',
         	'value'=>($model->status==1 ? "Activo":"Inactivo"),

@@ -35,7 +35,7 @@ class UserInfo
         trigger_error('Unserializing is not allowed.', E_USER_ERROR);
     }
 
-    function user() 
+    function user($id=0)
     {
         return Yii::app()->getModule('user')->user();
     }
@@ -51,8 +51,8 @@ class UserInfo
     {
         if(Yii::app()->user->isGuest)
             return false;
-        if(Yii::app()->getModule('user')->isAdmin())
-            return true;
+        //if(Yii::app()->getModule('user')->isAdmin())
+        //    return true;
         $roles = Rights::getAssignedRoles();
         return isset($roles[$rol]);
     }

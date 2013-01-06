@@ -28,6 +28,19 @@ class MailHelper {
 			
 			$transport = new Zend_Mail_Transport_Smtp($smtp->valor, $config);
 			Zend_Mail::setDefaultTransport($transport);
+		}else if($tipo->valor == "pop"){
+			$server = pb("mail", "server");
+			$config = array(
+					'port' => $server->referencia_1,
+					'auth' => 'login',
+					'username' => $tipo->referencia_1,
+					'password' => $tipo->referencia_2,
+			);
+			if(!empty($server->referencia_2))
+				$config['ssl'] = $server->referencia_2;
+			
+			$transport = new Zend_Mail_Transport_Smtp($server->valor, $config);
+			Zend_Mail::setDefaultTransport($transport);
 		}else
 			throw new CHttpException(404,'No esta configurado un tipo de mail: gmail, elrosado, ...');
 		$from = pb("mail", "from");

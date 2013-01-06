@@ -2,7 +2,8 @@
 function kcore_parameters(){
     return array(
         'paths'=>array(
-            'upload'=>dirname(__FILE__).DS.'..'.DS.'..'.DS.'uploads',
+            'upload'=>dirname(__FILE__).DS.'..'.DS.'..'.DS.'uploads'.DS,
+            'images'=>dirname(__FILE__).DS.'..'.DS.'images'.DS,
         ),
         'saveDateTime'=>'Y-m-d H-i-s',
         'saveDate'=>'Y-m-d H-i-s',

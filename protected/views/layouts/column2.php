@@ -4,8 +4,8 @@
 	<h2><?= $this->tituloPagina;?></h2>
 </div>
 <?php } ?>
-<div class="row-fluid">
-<div class="span3-fluid">
+<div class="row">
+<div class="span3">
 	<div class="tabbable tabs-left">
 	<?php
 		$this->widget('zii.widgets.CMenu', array(

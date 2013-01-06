@@ -17,6 +17,22 @@ class Rights
 	private static $_m;
 	private static $_a;
 
+	public static function getUsersByRol($rol='Admin')
+	{
+		$authorizer = self::getAuthorizer();
+		$assignments = $authorizer->authManager->getAssignmentsByItemName( $rol );
+		$userIdList = array();
+		foreach( $assignments as $userId=>$assignment )
+			$userIdList[] = $userId;
+		$criteria = new CDbCriteria();
+		$criteria->addInCondition(Rights::module()->userIdColumn, $userIdList);
+
+		$userClass = Rights::module()->userClass;
+		$users = CActiveRecord::model($userClass)->findAll($criteria);
+		return $users;
+	}
+
+	
 	/**
 	* Assigns an authorization item to a specific user.
 	* @param string $itemName the name of the item to assign.

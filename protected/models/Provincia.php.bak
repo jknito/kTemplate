@@ -8,7 +8,6 @@
  * @property integer $pais_id
  * @property string $nombre
  * @property integer $status
- * @property string $codigo
  *
  * The followings are the available model relations:
  * @property Canton[] $cantons
@@ -45,10 +44,9 @@ class Provincia extends CActiveRecord
 			array('pais_id, nombre, status', 'required'),
 			array('pais_id, status', 'numerical', 'integerOnly'=>true),
 			array('nombre', 'length', 'max'=>100),
-			array('codigo', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, pais_id, nombre, status, paisNombre, codigo', 'safe', 'on'=>'search'),
+			array('id, pais_id, nombre, status, paisNombre', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -87,7 +85,6 @@ class Provincia extends CActiveRecord
 			'pais_id' => 'Pais',
 			'nombre' => 'Nombre',
 			'status' => 'Status',
-			'codigo' => 'Codigo',
 			'paisNombre' => 'Pais',
 		);
 	}
@@ -108,7 +105,6 @@ class Provincia extends CActiveRecord
 		$criteria->compare('pais_id',$this->pais_id);
 		$criteria->compare('nombre',$this->nombre,true);
 		$criteria->compare('t.status',$this->status);
-		$criteria->compare('t.codigo',$this->codigo,true);
 		$criteria->compare('pais.nombre',$this->paisNombre,true);
 
 		$sort = new CSort();

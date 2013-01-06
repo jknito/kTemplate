@@ -1,13 +1,13 @@
 <?php
 $this->breadcrumbs=array(
-	'Provincias'=>array('index'),
+	'Parroquias'=>array('index'),
 	$model->id,
 );
 
-$this->tituloPagina = "Ver Provincias";
+$this->tituloPagina = "Ver Parroquias";
 
 $this->menu=array(
-	array('template'=>'<h2>Provincias&nbsp;</h2>',),
+	array('template'=>'<h2>Parroquias&nbsp;</h2>',),
 	array('label'=>'Listar', 'url'=>array('index')),
 	array('label'=>'Crear', 'url'=>array('create')),
 	array('label'=>'Modificar', 'url'=>array('update', 'id'=>$model->id)),
@@ -21,6 +21,8 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'paisNombre',
+		'provinciaNombre',
+		'cantonNombre',
 		'nombre',
 		'codigo',
 array(

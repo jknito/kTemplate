@@ -27,12 +27,6 @@ $('.search-form form').submit(function(){
 .filters td input { width: 90%; margin-bottom:0px;}
 .filters td select { width: auto; margin-bottom:0px;}
 </style>
-<?php // echo CHtml::link('Busqueda avanzada','#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
-</div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'provincia-grid',
@@ -46,8 +40,8 @@ $('.search-form form').submit(function(){
 	'columns'=>array(
 		'id',
 		'paisNombre',
+		'codigo',
 		'nombre',
-
         array( 'class'=>'CDataColumn',
         	'id'=>'status',
         	'header'=>'Status',

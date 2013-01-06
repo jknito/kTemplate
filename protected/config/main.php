@@ -8,6 +8,8 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'kTemplate',
+	'sourceLanguage' => 'es',
+	'language'=>'es',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -15,13 +17,14 @@ return array(
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
+		'application.models.data.*',
 		'application.components.*',
         'application.modules.user.models.*',
         'application.modules.user.components.*',
         'application.modules.rights.*',
         'application.modules.rights.components.*',
 		'application.modules.menu.models.*',
-        'application.helpers.*'
+        'application.helpers.*',
 	),
 
 	'modules'=>array(

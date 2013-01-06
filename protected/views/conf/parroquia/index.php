@@ -1,12 +1,11 @@
 <?php
 $this->breadcrumbs=array(
-	'Cantons'=>array('index'),
+	'Parroquias'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('template'=>'<h2>Cantons&nbsp;</h2>',),
-	array('label'=>'Listar', 'url'=>array('index')),
+	array('template'=>'<h2>Parroquias&nbsp;</h2>',),
 	array('label'=>'Crear', 'url'=>array('create')),
 );
 
@@ -16,7 +15,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('canton-grid', {
+	$.fn.yiiGridView.update('parroquia-grid', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -27,9 +26,15 @@ $('.search-form form').submit(function(){
 .filters td input { width: 90%; margin-bottom:0px;}
 .filters td select { width: auto; margin-bottom:0px;}
 </style>
+<?php // echo CHtml::link('Busqueda avanzada','#',array('class'=>'search-button')); ?>
+<div class="search-form" style="display:none">
+<?php $this->renderPartial('_search',array(
+	'model'=>$model,
+)); ?>
+</div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'canton-grid',
+	'id'=>'parroquia-grid',
 	'dataProvider'=>$model->search(),
 	'itemsCssClass'=>'table table-bordered table-striped table-condensed',
 	'pagerCssClass'=>'pagination pagination-centered',
@@ -40,6 +45,7 @@ $('.search-form form').submit(function(){
 	'columns'=>array(
 		'paisNombre',
 		'provinciaNombre',
+		'cantonNombre',
 		'codigo',
 		'nombre',
         array( 'class'=>'CDataColumn',

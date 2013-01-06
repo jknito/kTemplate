@@ -8,7 +8,7 @@
 	<?php echo $form->errorSummary($model); ?>
 	<div>
 		<?php echo $form->labelEx($model,'pais_id'); ?>
-		<?php echo $form->textField($model,'pais_id',array('ktype'=>'int(11)','rel'=>'tooltip','disabled'=>'disabled','class'=>'input-mini')); ?>
+		<?php echo $form->textField($model,'pais_id',array('ktype'=>'int(11)','rel'=>'tooltip','readonly'=>'readonly','class'=>'input-mini')); ?>
 		<?php 
 		$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
 			'model'=>$model,
@@ -32,7 +32,7 @@
 	</div>
 	<div>
 		<?php echo $form->labelEx($model,'provincia_id'); ?>
-		<?php echo $form->textField($model,'provincia_id',array('ktype'=>'int(11)','rel'=>'tooltip','disabled'=>'disabled','class'=>'input-mini')); ?>
+		<?php echo $form->textField($model,'provincia_id',array('ktype'=>'int(11)','rel'=>'tooltip','readonly'=>'readonly','class'=>'input-mini')); ?>
 		<?php 
 		$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
 			'model'=>$model,
@@ -54,7 +54,11 @@
 		?>
 		<?php echo $form->error($model,'provincia_id'); ?>
 	</div>
-
+	<div>
+		<?php echo $form->labelEx($model,'codigo'); ?>
+		<?php echo $form->textField($model,'codigo',array('size'=>50,'maxlength'=>50,'ktype'=>'varchar(50)')); ?>
+		<?php echo $form->error($model,'codigo'); ?>
+	</div>
 	<div>
 		<?php echo $form->labelEx($model,'nombre'); ?>
 		<?php echo $form->textField($model,'nombre',array('size'=>60,'maxlength'=>100,'ktype'=>'varchar(100)')); ?>

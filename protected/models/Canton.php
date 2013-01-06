@@ -45,7 +45,7 @@ class Canton extends CActiveRecord
 			array('nombre', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, provincia_id, nombre, status, paisNombre, provinciaNombre', 'safe', 'on'=>'search'),
+			array('id, provincia_id, nombre, codigo, status, paisNombre, provinciaNombre', 'safe', 'on'=>'search'),
 		);
 	}
 	//nueva propiedad para pais
@@ -103,6 +103,7 @@ class Canton extends CActiveRecord
 			'nombre' => 'Nombre',
 			'status' => 'Status',
 			'paisNombre' => 'Pais',
+			'codigo' => 'Codigo',
 			'provinciaNombre' => 'Provincia',
 		);
 	}
@@ -125,6 +126,7 @@ class Canton extends CActiveRecord
 		$criteria->compare('t.nombre',$this->nombre,true);
 		$criteria->compare('pais.nombre',$this->paisNombre,true);
 		$criteria->compare('provincia.nombre',$this->provinciaNombre,true);
+		$criteria->compare('t.codigo',$this->codigo,true);
 		$criteria->compare('t.status',$this->status);
 
 		return new CActiveDataProvider($this, array(
