@@ -1,4 +1,7 @@
 <?php $this->beginContent('//layouts/main'); ?>
+<?php if ( isset($this->tituloPagina)){?>
+<h1><?php echo $this->tituloPagina ?></h1>
+<?php }?>
 <?php if ( isset($this->menu)) { ?>
 <div class="row-fluid">
 	<?php

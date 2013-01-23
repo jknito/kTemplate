@@ -97,12 +97,16 @@
       </div>
     </div>
 
-    <div class="container">
+	<div id="wrap">
+    <div id="contenedor" class="container">
         <?php echo $content; ?>
-        <footer>
-        <hr/>Powered by <a href="http://jknito.net" target="_blank">jknito</a>
-        </footer><!-- footer -->
-    </div><!-- page -->
-
+		<div id="push"></div>
+    </div>
+	</div>
+	<div id="footer">
+      <div class="container">
+        <p class="muted credit">Powered by <a href="http://jknito.net" target="_blank">jknito</a>.</p>
+      </div>
+    </div>
 </body>
 </html>
